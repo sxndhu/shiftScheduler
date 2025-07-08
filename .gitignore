@@ -5,7 +5,7 @@ __pycache__/
 *.pyd
 
 # Virtual Environment
-backend/venv/
+backend/myvenv/
 
 # === Django ===
 *.log
