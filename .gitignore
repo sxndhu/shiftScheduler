@@ -32,3 +32,7 @@ yarn-error.log
 
 # === Others ===
 *.egg-info/
+
+# Migrations 
+**/migrations/*
+!**/migrations/__init__.py
