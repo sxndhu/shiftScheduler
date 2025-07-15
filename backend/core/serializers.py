@@ -39,8 +39,15 @@ class AdminUserCreationSerializer(serializers.ModelSerializer):
 
 
 class ShiftSerializer(serializers.ModelSerializer):
-    assigned_to = serializers.SlugRelatedField(slug_field = 'username', queryset = User.objects.all())
+    assigned_to = serializers.SlugRelatedField(slug_field = 'username', queryset = User.objects.all(), required=False)
+    total_hours = serializers.FloatField(read_only = True)
 
     class Meta:
         model = Shift
-        fields = ['id', 'name', 'start_time', 'end_time', 'assigned_to']
+        fields = ['id', 'start_time', 'end_time', 'break_hours','assigned_to', 'is_approved', 'date', 'total_hours']
+        read_only_fields = ['is_approved', 'total_hours']
+
+    def create(self, validated_data):
+        if not self.context['request'].user.is_staff:
+            validated_data['assigned_to'] = self.context['request'].user
+        return super().create(validated_data)
