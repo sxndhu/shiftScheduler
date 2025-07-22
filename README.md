@@ -67,11 +67,13 @@ http://localhost:3000/
 - Use it for protected API calls
 
 👨‍💻 Author
+
 Angad Singh Sandhu
 GitHub: github.com/sxndhu
 LinkedIn: https://www.linkedin.com/in/angad277/
 
 🙌 Acknowledgments
+
 Built with Django REST Framework and React
 
 Inspired by the need for simple and effective shift management in small teams at my own workplace.
