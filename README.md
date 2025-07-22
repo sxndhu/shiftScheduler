@@ -53,20 +53,22 @@ http://localhost:8000/api/
 ### 2️⃣ Frontend (React)
 
 cd frontend
+
 npm install
+
 npm start
 
 Frontend will run at:
 http://localhost:3000/
 
-🔑 Authentication
+## 🔑 Authentication
 - Token-based authentication (DRF Token Auth)
 
 - Store token in localStorage
 
 - Use it for protected API calls
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Angad Singh Sandhu
 
@@ -74,7 +76,7 @@ GitHub: github.com/sxndhu
 
 LinkedIn: https://www.linkedin.com/in/angad277/
 
-🙌 Acknowledgments
+## 🙌 Acknowledgments
 
 
 Built with Django REST Framework and React
