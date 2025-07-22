@@ -47,6 +47,7 @@ const EditShiftForm = ({ shift, users, onUpdate, onDelete, onCancel }) => {
             });
             alert('Shift updated successfully!');
             onUpdate();
+            onCancel(); 
         } catch (error) {
             console.error(error);
             if (error.response && error.response.data) {

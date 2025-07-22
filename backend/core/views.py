@@ -56,6 +56,11 @@ class ShiftViewSet(viewsets.ModelViewSet):
         if date_filter:
             return queryset.filter(date=date_filter)
 
+        if not user.is_staff:
+            queryset = queryset.filter(assigned_to=user.username)
+            return queryset
+        
+        return queryset 
 
     def perform_update(self, serializer):
         shift = serializer.save()
