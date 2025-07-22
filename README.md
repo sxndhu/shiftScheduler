@@ -24,7 +24,7 @@ Supports **Admins** and **Employees** with role-based access.
 
 | Frontend | Backend | Database |
 |----------|---------|----------|
-| React (Vite or CRA) | Django REST Framework | SQLite (Dev) / PostgreSQL (Prod) |
+| React | Django REST Framework | PostgreSQL |
 
 ---
 
@@ -65,3 +65,13 @@ http://localhost:3000/
 - Store token in localStorage
 
 - Use it for protected API calls
+
+👨‍💻 Author
+Angad Singh Sandhu
+GitHub: github.com/sxndhu
+LinkedIn: https://www.linkedin.com/in/angad277/
+
+🙌 Acknowledgments
+Built with Django REST Framework and React
+
+Inspired by the need for simple and effective shift management in small teams at my own workplace.
