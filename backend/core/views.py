@@ -1,11 +1,26 @@
-from rest_framework import viewsets, mixins, status
+from rest_framework import viewsets, mixins, status, permissions
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes, api_view
 from django.contrib.auth.models import User
+from rest_framework.views import APIView
 from .models import Shift
 from .serializers import RegisterSerializer, AdminUserCreationSerializer, UserSerializer, ShiftSerializer
 from .permissions import IsAdminUser, IsAdminOrReadOnlyForAssignedShift, IsNotAuthenticated
 
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def current_user_view(request):
+    return Response({
+        'username': request.user.username,
+        'is_staff': request.user.is_staff,
+    })
+
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response({"message": "Logged out successfully."})
 
 class RegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
@@ -38,11 +53,9 @@ class ShiftViewSet(viewsets.ModelViewSet):
 
         date_filter = self.request.query_params.get('date', None)
 
-        if user.is_staff:
-            if date_filter:
-                return queryset.filter(date=date_filter)
-            return queryset
-        return queryset.filter(assigned_to=user)
+        if date_filter:
+            return queryset.filter(date=date_filter)
+
 
     def perform_update(self, serializer):
         shift = serializer.save()
